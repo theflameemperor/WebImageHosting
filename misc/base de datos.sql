@@ -34,10 +34,10 @@ create table comentarios (
     comentario varchar(1000),
 );
 create table votoComentario(
-    idVotoComentario identity primary key,
     idUsuario bigint references usuarios(idUsuario),
     idComentario bigint references comentarios(idComentario),
-    voto int
+    voto int,
+    primary key(idUsuario,idComentario)
 );
 -- insertar datos iniciales
 -- tipos posibles

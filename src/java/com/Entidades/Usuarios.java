@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 
-package com.entidades;
+package com.Entidades;
 
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,6 +52,8 @@ public class Usuarios implements Serializable {
     private String contrasena;
     @OneToMany(mappedBy = "idusuario")
     private List<Comentarios> comentariosList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    private List<Votocomentario> votocomentarioList;
     @OneToMany(mappedBy = "usuario")
     private List<Imagenes> imagenesList;
     @JoinColumn(name = "TIPOUSUARIO", referencedColumnName = "IDTIPO")
@@ -98,6 +101,15 @@ public class Usuarios implements Serializable {
     }
 
     @XmlTransient
+    public List<Votocomentario> getVotocomentarioList() {
+        return votocomentarioList;
+    }
+
+    public void setVotocomentarioList(List<Votocomentario> votocomentarioList) {
+        this.votocomentarioList = votocomentarioList;
+    }
+
+    @XmlTransient
     public List<Imagenes> getImagenesList() {
         return imagenesList;
     }
@@ -136,7 +148,7 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "com.entidades.Usuarios[ idusuario=" + idusuario + " ]";
+        return "com.Entidades.Usuarios[ idusuario=" + idusuario + " ]";
     }
     
 }

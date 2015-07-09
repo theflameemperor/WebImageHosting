@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.entidades;
+package com.Entidades;
 
 import java.io.Serializable;
 import java.util.List;
@@ -100,7 +100,7 @@ public class Tipousuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "com.entidades.Tipousuarios[ idtipo=" + idtipo + " ]";
+        return "com.Entidades.Tipousuarios[ idtipo=" + idtipo + " ]";
     }
     
 }

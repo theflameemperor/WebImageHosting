@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.entidades;
+package com.Entidades;
 
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -41,9 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Imagenes.findByDescripcion", query = "SELECT i FROM Imagenes i WHERE i.descripcion = :descripcion"),
     @NamedQuery(name = "Imagenes.findByNombreimagen", query = "SELECT i FROM Imagenes i WHERE i.nombreimagen = :nombreimagen"),
     @NamedQuery(name = "Imagenes.findByTamano", query = "SELECT i FROM Imagenes i WHERE i.tamano = :tamano"),
-    @NamedQuery(name = "Imagenes.findByCantidadvisitas", query = "SELECT i FROM Imagenes i WHERE i.cantidadvisitas = :cantidadvisitas"),
-    @NamedQuery(name = "Imagenes.findByVotospositivo", query = "SELECT i FROM Imagenes i WHERE i.votospositivo = :votospositivo"),
-    @NamedQuery(name = "Imagenes.findByVotosnegativo", query = "SELECT i FROM Imagenes i WHERE i.votosnegativo = :votosnegativo")})
+    @NamedQuery(name = "Imagenes.findByCantidadvisitas", query = "SELECT i FROM Imagenes i WHERE i.cantidadvisitas = :cantidadvisitas")})
 public class Imagenes implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -67,10 +65,6 @@ public class Imagenes implements Serializable {
     private BigInteger tamano;
     @Column(name = "CANTIDADVISITAS")
     private BigInteger cantidadvisitas;
-    @Column(name = "VOTOSPOSITIVO")
-    private BigInteger votospositivo;
-    @Column(name = "VOTOSNEGATIVO")
-    private BigInteger votosnegativo;
     @ManyToMany(mappedBy = "imagenesList")
     private List<Etiquetas> etiquetasList;
     @OneToMany(mappedBy = "idimagen")
@@ -142,22 +136,6 @@ public class Imagenes implements Serializable {
         this.cantidadvisitas = cantidadvisitas;
     }
 
-    public BigInteger getVotospositivo() {
-        return votospositivo;
-    }
-
-    public void setVotospositivo(BigInteger votospositivo) {
-        this.votospositivo = votospositivo;
-    }
-
-    public BigInteger getVotosnegativo() {
-        return votosnegativo;
-    }
-
-    public void setVotosnegativo(BigInteger votosnegativo) {
-        this.votosnegativo = votosnegativo;
-    }
-
     @XmlTransient
     public List<Etiquetas> getEtiquetasList() {
         return etiquetasList;
@@ -206,7 +184,7 @@ public class Imagenes implements Serializable {
 
     @Override
     public String toString() {
-        return "com.entidades.Imagenes[ idimagen=" + idimagen + " ]";
+        return "com.Entidades.Imagenes[ idimagen=" + idimagen + " ]";
     }
     
 }

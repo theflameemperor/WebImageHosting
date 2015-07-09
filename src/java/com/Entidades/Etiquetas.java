@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.entidades;
+package com.Entidades;
 
 import java.io.Serializable;
 import java.util.List;
@@ -105,7 +105,7 @@ public class Etiquetas implements Serializable {
 
     @Override
     public String toString() {
-        return "com.entidades.Etiquetas[ idetiqueta=" + idetiqueta + " ]";
+        return "com.Entidades.Etiquetas[ idetiqueta=" + idetiqueta + " ]";
     }
     
 }
