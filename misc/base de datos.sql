@@ -17,8 +17,6 @@ create table imagenes(
     tamano bigint,
     cantidadVisitas bigint,
     usuario bigint references usuarios(idUsuario),
-    votosPositivo bigint,
-    votosNegativo bigint
 );
 create table etiquetas(
     idEtiqueta identity primary key,
@@ -34,8 +32,12 @@ create table comentarios (
     idUsuario bigint references usuarios(idUsuario),
     idImagen bigint references imagenes(idImagen),
     comentario varchar(1000),
-    votosPositivo bigint,
-    votosNegativo bigint
+);
+create table votoComentario(
+    idVotoComentario identity primary key,
+    idUsuario bigint references usuarios(idUsuario),
+    idComentario bigint references comentarios(idComentario),
+    voto int
 );
 -- insertar datos iniciales
 -- tipos posibles
@@ -55,3 +57,6 @@ from
     tipoUsuarios
 where
     usuarios.tipoUsuario = tipoUsuarios.idTipo;
+
+-- borra todo
+drop all objects
