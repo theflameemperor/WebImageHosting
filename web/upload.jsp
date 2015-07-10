@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="Vista" uri="WEB-INF/tlds/VistaDeLaPagina.tld"%>
+<%@page import="com.DatoSession.SessionUsuario"%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,7 +16,7 @@
     <body>
         <%
             //de ejemplo
-            String user = (String)request.getSession().getAttribute("user_login");
+            SessionUsuario user = (SessionUsuario)request.getSession().getAttribute("usuario");
             if (user == null) {
                 %>
                     <Vista:NotLogged/>

@@ -6,6 +6,7 @@
 <a href="WEB-INF/tlds/VistaDeLaPagina.tld"></a>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="Vista" uri="WEB-INF/tlds/VistaDeLaPagina.tld"%>
+<%@page import="com.DatoSession.SessionUsuario"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -15,21 +16,20 @@
     </head>
     <body>
         <%
-            //de ejemplo
-            String user = (String)request.getSession().getAttribute("user_login");
+            SessionUsuario user = (SessionUsuario)request.getSession().getAttribute("usuario");
             if (user == null) {
                 %>
                     <Vista:NotLogged/>
                 <%
             }
             else{
-                %>  
+                %>
                     <Vista:Logged/>
                 <%
             }
         %>
-        
-        
-        
+
+
+
     </body>
 </html>

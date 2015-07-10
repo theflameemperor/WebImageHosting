@@ -33,10 +33,10 @@ public class NavBar_notlogged extends SimpleTagSupport {
             out.println("<button class=\"btn btn-default navbar-btn\"class=\"dropdown-toggle\" data-toggle=\"dropdown\">Log in</button>");
             out.println("<ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu1\">");
             out.println("<li>");
-            out.println("<form class=\"form\">");
+            out.println("<form class=\"form\" action=\"ValidarUsuario\" method=\"post\">");
             out.println("<div class=\"form-group\">");
             out.println("<label>Nombre : </label><input class=\"form-control\" type=\"text\" name=\"nombre\" title=\"Ponga su Nombre\" pattern=\"[A-Za-z].{0,29}\" placeholder=\"Nombre de su usuario\"required/>");
-            out.println("<label>Contrasena : </label><input class=\"form-control\" type=\"text\" name=\"contrasena\" title=\"Ponga su Pass\" pattern=\".{4,30}\" placeholder=\"Su Contrasena\" required/>");
+            out.println("<label>Contrasena : </label><input class=\"form-control\" type=\"password\" name=\"contrasena\" title=\"Ponga su Pass\" pattern=\".{4,30}\" placeholder=\"Su Contrasena\" required/>");
             out.println("</div>");
             out.println("<button class=\"btn btn-default\" type=\"submit\" name=\"button\" value=\"login\">Login</button>");
             out.println("<button class=\"btn btn-default\" type=\"submit\" name=\"button\" value=\"Registrar\">Register</button>");
