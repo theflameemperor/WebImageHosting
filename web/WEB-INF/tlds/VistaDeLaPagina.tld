@@ -4,8 +4,8 @@
   <short-name>vistadelapagina</short-name>
   <uri>/WEB-INF/tlds/VistaDeLaPagina</uri>
   <tag>
-    <name>IncludeBoostrap</name>
-    <tag-class>com.Vista.IncludeBoostrap</tag-class>
+    <name>IncludeBootstrap</name>
+    <tag-class>com.Vista.IncludeBootstrap</tag-class>
     <body-content>scriptless</body-content>
     <attribute>
       <name>file</name>

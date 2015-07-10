@@ -1,35 +1,71 @@
-<%--
+<%-- 
     Document   : index
-    Created on : Jul 7, 2015, 3:08:10 PM
-    Author     : mrmomo
+    Created on : Jul 9, 2015, 10:06:42 PM
+    Author     : Enmanuel
 --%>
-<a href="WEB-INF/tlds/VistaDeLaPagina.tld"></a>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib  prefix="Vista" uri="WEB-INF/tlds/VistaDeLaPagina.tld"%>
-<%@page import="com.DatoSession.SessionUsuario"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib  prefix="tags" uri="WEB-INF/tlds/VistaDeLaPagina.tld"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <Vista:IncludeBoostrap/>
-        <title>Pagina Principal</title>
-    </head>
-    <body>
-        <%
-            SessionUsuario user = (SessionUsuario)request.getSession().getAttribute("usuario");
-            if (user == null) {
-                %>
-                    <Vista:NotLogged/>
-                <%
-            }
-            else{
-                %>
-                    <Vista:Logged/>
-                <%
-            }
-        %>
+<html lang="en">
 
+<head>
+    <tags:IncludeBootstrap file="true"/>
+</head>
 
+<body>
+    <tags:NotLogged/>
+    <div class="cuerpo">
+        <div class="container">
+            <div class="row">
 
-    </body>
+            <div class="col-lg-12">
+                <h1 class="page-header">Imágenes más votadas</h1>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                </a>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
 </html>

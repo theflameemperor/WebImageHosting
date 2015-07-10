@@ -4,6 +4,7 @@
     <jta-data-source>Data</jta-data-source>
     <class>com.Entidades.Usuarios</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test1"/>
       <property name="javax.persistence.jdbc.user" value="sa"/>
