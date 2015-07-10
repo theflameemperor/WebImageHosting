@@ -47,7 +47,12 @@ public class BaseDeDatos {
         boolean Success = false;
         try {
             em.getTransaction().begin();
-            Tipousuarios tUsuario = em.find(Tipousuarios.class,2);
+            //Fuck you java
+            //incorrect
+            //Tipousuarios tUsuario = em.find(Tipousuarios.class,2);
+            //correct
+            //Tipousuarios tUsuario = em.find(Tipousuarios.class,(long)2);
+            Tipousuarios tUsuario = em.find(Tipousuarios.class,(long)2);
             System.out.println("tipousuario:" + tUsuario.getTipo());
             Usuarios es = new Usuarios(nombre,contrasena,tUsuario);
             em.persist(es);
@@ -56,6 +61,7 @@ public class BaseDeDatos {
             em.getTransaction().commit();
         }
         catch (Exception e) {
+            System.out.println("Mensaje de excepetion " + e);
             em.getTransaction().rollback();
         }
         finally {
