@@ -79,7 +79,15 @@ public class Imagenes implements Serializable {
     public Imagenes(Long idimagen) {
         this.idimagen = idimagen;
     }
-
+    public Imagenes(String direccionimagen,String titulo,String nombreimagen,BigInteger tamano,BigInteger cantidadvisitas,Usuarios usuario,String descripcion){
+        this.direccionimagen=direccionimagen;
+        this.titulo = titulo;
+        this.nombreimagen=nombreimagen;
+        this.tamano = tamano;
+        this.cantidadvisitas =cantidadvisitas;
+        this.usuario = usuario;
+        this.descripcion =descripcion;
+    }
     public Long getIdimagen() {
         return idimagen;
     }
@@ -186,5 +194,5 @@ public class Imagenes implements Serializable {
     public String toString() {
         return "com.Entidades.Imagenes[ idimagen=" + idimagen + " ]";
     }
-    
+
 }

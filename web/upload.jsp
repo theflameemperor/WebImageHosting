@@ -28,26 +28,33 @@
                 <%
             }
         %>
-        <form enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="Titulo">Titulo</label>
-                <input class="form-control" type="text" pattern=".{1,50}" required />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-1">
+                    <p></p>
+                </div>
 
-            </div>
-            <div class="form-group">
-                <label for="Descripcion">Descripcion </label>
-                <input class="form-control" type="text" pattern=".{1,50}" required />
-            </div>
+                <div class="col-sm-6">
+                    <form enctype="multipart/form-data" action="SubidaDeImagen" method="post">
+                        <div class="form-group">
+                            <label for="Titulo">Titulo</label>
+                            <input class="form-control" type="text" pattern=".{1,50}" required />
 
-            <div class="form-group">
-                <label for="Etiquetas">Etiquetas </label>
-                <input class="form-control" type="text" pattern=".{1,50}" placeholder="separado por;" pattern=".+;" required />
-            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Descripcion">Descripcion </label>
+                            <input class="form-control" type="text" pattern=".{1,50}" required />
+                        </div>
+
 
             <div class="form-group">
                 <input id="file-0b" class="file" type="file" multiple data-preview-file-type="any" data-upload-url="#" data-preview-file-icon="">
             </div>
         </form>
-
+                <div class="col-sm-5">
+                    <!--posible side bar-->
+                </div>
+            </div>
+        </div>
     </body>
 </html>

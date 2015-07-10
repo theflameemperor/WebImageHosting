@@ -6,24 +6,32 @@
 
 package com.Controlador;
 
+import com.DatoSession.ErrorDePagina;
 import com.DatoSession.SessionUsuario;
-import com.Entidades.Usuarios;
 import com.Servicio.BaseDeDatos;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.DatoSession.ErrorDePagina;
+import javax.servlet.http.Part;
+
 /**
  *
  * @author mrmomo
  */
-@WebServlet(name = "ValidarUsuario", urlPatterns = {"/ValidarUsuario"})
-public class ValidarUsuario extends HttpServlet {
+@WebServlet(name = "SubidaDeImagen", urlPatterns = {"/SubidaDeImagen"})
+@MultipartConfig
+public class SubidaDeImagen extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,44 +44,67 @@ public class ValidarUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        if (request.getSession().getAttribute("usuario") != null) {
-            //send home
-            response.sendRedirect("index.jsp");
-        }
         BaseDeDatos Data =  new BaseDeDatos();
-        String nombre = request.getParameter("nombre");
-        String contrasena = request.getParameter("contrasena");
         RequestDispatcher dispatcher = request.getRequestDispatcher("./errorPage.jsp");
-        System.out.println("nombre: " +nombre+" contrasena:" +contrasena);
-        if (nombre==null || contrasena == null) {
-            //send error page [missing parameters]
-            request.setAttribute("error", new ErrorDePagina("Datos Incompletos","falto poner su nombre de usario o contrasena "));
-            System.out.println("faltan cosas");
-            dispatcher.forward(request, response);
-        }
-        Usuarios tmp =  Data.getUsuario(nombre);
-        if (tmp != null) {
-            if (tmp.getNombreusuario().equals(nombre) && tmp.getContrasena().equals(contrasena)) {
-                //log in success
-                request.getSession().setAttribute("usuario",new SessionUsuario(nombre));
-                response.sendRedirect("index.jsp");
-            }
-            else{
-                //send error page [login failed]
-                System.out.println("!Datos invalidos");
-                request.setAttribute("error", new ErrorDePagina("Error al iniciar ","El de usuario  o la conrasena es invalida"));
-                System.out.println("Datos invalidos");
-
-                dispatcher.forward(request, response);
-            }
+        // Create path components to save the file
+        final String path = "/home/mrmomo/image hosting/";
+        final String nombreUsuario;
+        final Part filePart = request.getPart("file");
+        SessionUsuario session =  (SessionUsuario)request.getSession().getAttribute("usuario");
+        if (session == null) {
+            nombreUsuario = "anon";
         }
         else{
-            //send error page[user does not exist]
-            request.setAttribute("error", new ErrorDePagina("No Existe","Este usuario no exite"));
+            nombreUsuario = session.getNombre();
+        }
+        long idval = Data.getUltimaImagenDelUsuario(nombreUsuario);
+
+        File SaveDir = new File(path + "/"+nombreUsuario);
+        if (!SaveDir.exists()) {
+            SaveDir.mkdir();
+        }
+        if (idval == -1) {
+            request.setAttribute("error", new ErrorDePagina("error interno","id de imagen no se puede"+SaveDir.getAbsolutePath()+"/" +idval+getExtension(filePart.getSubmittedFileName())));
             dispatcher.forward(request, response);
         }
-    }
+        OutputStream out = null;
+        InputStream filecontent = null;
+        final PrintWriter writer = response.getWriter();
 
+        try {
+            out = new FileOutputStream(new File(SaveDir.getAbsolutePath()+"/" +idval+getExtension(filePart.getSubmittedFileName())));
+            writer.println("<p>1</p>");
+            filecontent = filePart.getInputStream();
+
+            int read = 0;
+            final byte[] bytes = new byte[1024];
+
+            while ((read = filecontent.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
+
+        }
+        catch (FileNotFoundException fne) {
+            writer.println("You either did not specify a file to upload or are  trying to upload a file to a protected or nonexisten location.");
+            writer.println("<br/> ERROR: " + fne.getMessage());
+
+        }
+        finally {
+            if (out != null) {
+                out.close();
+            }
+            if (filecontent != null) {
+                filecontent.close();
+            }
+            if (writer != null) {
+                writer.close();
+            }
+        }
+        //response.sendRedirect("index.jsp");
+    }
+    protected String getExtension(String archivo){
+        return "*"+archivo.replaceAll(".*\\.","");
+    };
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
