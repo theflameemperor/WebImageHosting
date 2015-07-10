@@ -27,24 +27,79 @@ public class NavBar_notlogged extends SimpleTagSupport {
     @Override
     public void doTag() throws JspException {
         JspWriter out = getJspContext().getOut();
-        try {
-            out.println("<nav class=\"navbar navbar-default\">");
-            out.println("<div class=\"dropdown\">");
-            out.println("<button class=\"btn btn-default navbar-btn\"class=\"dropdown-toggle\" data-toggle=\"dropdown\">Log in</button>");
-            out.println("<ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu1\">");
-            out.println("<li>");
-            out.println("<form class=\"form\" action=\"ValidarUsuario\" method=\"post\">");
-            out.println("<div class=\"form-group\">");
-            out.println("<label>Nombre : </label><input class=\"form-control\" type=\"text\" name=\"nombre\" title=\"Ponga su Nombre\" pattern=\"[A-Za-z].{0,29}\" placeholder=\"Nombre de su usuario\"required/>");
-            out.println("<label>Contrasena : </label><input class=\"form-control\" type=\"password\" name=\"contrasena\" title=\"Ponga su Pass\" pattern=\".{4,30}\" placeholder=\"Su Contrasena\" required/>");
-            out.println("</div>");
-            out.println("<button class=\"btn btn-default\" type=\"submit\" formmethod=\"post\" formaction=\"ValidarUsuario\" name=\"button\" value=\"login\">Login</button>");
-            out.println("<button class=\"btn btn-default\" type=\"submit\" formmethod=\"post\" formaction=\"RegistrarUsuario\" name=\"button\" value=\"Registrar\">Register</button>");
-            out.println("</form>");
-            out.println("</li>");
-            out.println("</ul>");
-            out.println("</div>");
-            out.println("</nav>");
+        try {out.println("<nav class=\"navbar navbar-default navbar-fixed-top\">\n" +
+"	<div class=container> \n" +
+"       <div class=\"navbar-header\"> \n" +
+"			<span class=\"navbar-brand\">Parcial 2. ImageHosting</span> \n" +
+"			<div>\n" +
+"				<a class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\">Subir imágenes</a> \n" +
+"			</div>\n" +
+"		</div>\n" +
+"		<div class=\"collapse navbar-collapse\">\n" +
+"		<ul class=\"nav navbar-nav navbar-right\">\n" +
+"			<li>\n" +
+"				<a href=\"#portfolio\">Inicio</a>\n" +
+"			</li>\n" +
+"			<li class=\"dropdown\" id=\"menuLogin\">\n" +
+"				<a class=\"dropdown-toggle\" href=\"#\" data-toggle=\"dropdown\" id=\"navLogin\">Iniciar sesión</a>\n" +
+"				<div class=\"dropdown-menu\" style=\"padding:17px;\">\n" +
+"					<form class=\"form\" id=\"formLogin\">\n" +
+"						<input name=\"username\" id=\"username\" type=\"text\" placeholder=\"Username\">\n" +
+"						<input name=\"password\" id=\"password\" type=\"password\" placeholder=\"Password\"><br>\n" +
+"						<button type=\"button\" id=\"btnLogin\" class=\"btn\">Login</button>\n" +
+"					</form>\n" +
+"				</div>\n" +
+"			</li>\n" +
+"			<li class=\"dropdown\" id=\"menuLogin\">\n" +
+"				<a class=\"dropdown-toggle\" href=\"#\" data-toggle=\"dropdown\" id=\"navLogin\">Registrarse</a>\n" +
+"				<div class=\"dropdown-menu\" style=\"padding:17px;\">\n" +
+"					<form class=\"form\" id=\"formLogin\">\n" +
+"						<input name=\"username\" id=\"username\" type=\"text\" placeholder=\"Username\">\n" +
+"						<input name=\"password\" id=\"password\" type=\"password\" placeholder=\"Password\"><br>\n" +
+"						<button type=\"button\" id=\"btnLogin\" class=\"btn\">Registrarse</button>\n" +
+"					</form>\n" +
+"				</div>\n" +
+"			</li>\n" +
+"		</ul>\n" +
+"	</div>\n" +
+"	</div>\n" +
+"</nav>\n" +
+"<div id=\"myModal\" class=\"modal fade\" role=\"dialog\">\n" +
+"  <div class=\"modal-dialog\">\n" +
+"    <!-- Modal content-->\n" +
+"    <div class=\"modal-content\">\n" +
+"      <div class=\"modal-header\">\n" +
+"        <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n" +
+"        <h4 class=\"modal-title\">Modal Header</h4>\n" +
+"      </div>\n" +
+"      <div class=\"modal-body\">\n" +
+"        <form enctype=\"multipart/form-data\">\n" +
+"            <div class=\"form-group\">\n" +
+"                <label for=\"Titulo\">Titulo</label>\n" +
+"                <input class=\"form-control\" type=\"text\" pattern=\".{1,50}\" required />\n" +
+"\n" +
+"            </div>\n" +
+"            <div class=\"form-group\">\n" +
+"                <label for=\"Descripcion\">Descripcion </label>\n" +
+"                <input class=\"form-control\" type=\"text\" pattern=\".{1,50}\" required />\n" +
+"            </div>\n" +
+"\n" +
+"            <div class=\"form-group\">\n" +
+"                <label for=\"Etiquetas\">Etiquetas </label>\n" +
+"                <input class=\"form-control\" type=\"text\" pattern=\".{1,50}\" placeholder=\"separado por;\" pattern=\".+;\" required />\n" +
+"            </div>\n" +
+"\n" +
+"            <div class=\"form-group\">\n" +
+"                <input id=\"file-0b\" class=\"file\" type=\"file\" multiple data-preview-file-type=\"any\" data-upload-url=\"#\" data-preview-file-icon=\"\">\n" +
+"            </div>\n" +
+"        </form>"+
+"      </div>\n" +
+"      <div class=\"modal-footer\">\n" +
+"        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+"      </div>\n" +
+"    </div>\n" +
+"  </div>\n" +
+"</div>");
 
         } catch (java.io.IOException ex) {
             throw new JspException("Error in Navbar tag", ex);

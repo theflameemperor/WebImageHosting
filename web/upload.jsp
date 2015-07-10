@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <Vista:IncludeBoostrap file="true"/>
+        <Vista:IncludeBootstrap file="true"/>
     </head>
     <body>
         <%
@@ -44,7 +44,7 @@
                 <input class="form-control" type="text" pattern=".{1,50}" placeholder="separado por;" pattern=".+;" required />
             </div>
 
-            <div class="form-group" height="500">
+            <div class="form-group">
                 <input id="file-0b" class="file" type="file" multiple data-preview-file-type="any" data-upload-url="#" data-preview-file-icon="">
             </div>
         </form>

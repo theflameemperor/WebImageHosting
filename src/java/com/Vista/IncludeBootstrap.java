@@ -18,7 +18,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  * @author mrmomo
  */
 //Barra de Navegacion
-public class IncludeBoostrap extends SimpleTagSupport {
+public class IncludeBootstrap extends SimpleTagSupport {
     boolean file= false;
     /**
      * Called by the container to invoke this tag. The implementation of this
@@ -29,9 +29,12 @@ public class IncludeBoostrap extends SimpleTagSupport {
     public void doTag() throws JspException {
         JspWriter out = getJspContext().getOut();
         try {
-            out.println("<script src=\"js/jquery-2.1.4.js\" type=\"text/javascript\"></script>");
-            out.println("<script src=\"js/bootstrap.min.js\" type=\"text/javascript\"></script>");
-            out.println("<link href=\"css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\"/>");
+            out.println("<title>Parcial 2. ImageHosting</title>\n" +
+"    <link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">\n" +
+"    <link href=\"css/estilos.css\" rel=\"stylesheet\">\n" +
+"    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>\n" +
+"</head><script src=\"js/jquery.js\"></script>\n" +
+"    <script src=\"js/bootstrap.min.js\"></script>");
             if (file) {
                 out.println("<script src=\"js/fileinput.min.js\" type=\"text/javascript\"></script>");
                 out.println("<link href=\"css/fileinput.min.css\" rel=\"stylesheet\" type=\"text/css\"/>");
