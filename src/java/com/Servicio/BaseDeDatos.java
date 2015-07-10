@@ -6,6 +6,10 @@
 
 package com.Servicio;
 
+import com.Entidades.Imagenes;
+import com.Entidades.Tipousuarios;
+import com.Entidades.Usuarios;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import static java.util.Collections.list;
@@ -16,8 +20,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 //Entidades de base de datos
-import com.Entidades.Usuarios;
-import com.Entidades.Tipousuarios;
 
 public class BaseDeDatos {
     //TODO
@@ -39,6 +41,23 @@ public class BaseDeDatos {
             em.close();
         }
         return es;
+    }
+    public long getUltimaImagenDelUsuario(String nombre){
+        EntityManager em = emf.createEntityManager();
+        long indice = -1;
+        try {
+            em.getTransaction().begin();
+            Usuarios temp = (Usuarios) em.createNamedQuery("Usuarios.findByNombreusuario").setParameter("nombreusuario",nombre).getSingleResult();
+            indice = temp.getImagenesList().get(temp.getImagenesList().size()-1).getIdimagen();
+            em.getTransaction().commit();
+        }
+        catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        finally {
+            em.close();
+        }
+        return indice;
     }
     //Insersion de datos
     public boolean RegistrarUsuario(String nombre,String contrasena){
@@ -68,12 +87,14 @@ public class BaseDeDatos {
         }
         return Success;
     }
-    public boolean InsertarImagen(String direccion,String titulo,String description,String nombreimagen,long tamano,int idusuario){
+    public boolean InsertarImagen(String direccion,String titulo,String description,String nombreimagen,BigInteger tamano,int idusuario){
         EntityManager em = emf.createEntityManager();
         boolean Success = false;
         try {
             em.getTransaction().begin();
-
+            Usuarios User = em.find(Usuarios.class,idusuario);
+            Imagenes imagen  = new Imagenes(direccion,titulo,nombreimagen,tamano,new BigInteger("0"),User,description);
+            em.persist(imagen);
             Success=true;
             em.flush();
             em.getTransaction().commit();
