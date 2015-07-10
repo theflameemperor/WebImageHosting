@@ -46,6 +46,7 @@ insert into tipoUsuarios (tipo) values('Usuario Comun');
 insert into tipoUsuarios (tipo) values('DBA');
 -- el Admin
 insert into usuarios (nombreUsuario,contrasena,tipoUsuario) values ('admin','1234',1);
+insert into usuarios (nombreUsuario,contrasena,tipoUsuario) values ('anon','',2);
 -- sql para probar
 select
     usuarios.idUsuario,

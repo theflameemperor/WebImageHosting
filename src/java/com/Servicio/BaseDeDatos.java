@@ -44,7 +44,7 @@ public class BaseDeDatos {
     }
     public long getUltimaImagenDelUsuario(String nombre){
         EntityManager em = emf.createEntityManager();
-        long indice = -1;
+        long indice = 0;
         try {
             em.getTransaction().begin();
             Usuarios temp = (Usuarios) em.createNamedQuery("Usuarios.findByNombreusuario").setParameter("nombreusuario",nombre).getSingleResult();
@@ -87,12 +87,12 @@ public class BaseDeDatos {
         }
         return Success;
     }
-    public boolean InsertarImagen(String direccion,String titulo,String description,String nombreimagen,BigInteger tamano,int idusuario){
+    public boolean InsertarImagen(String direccion,String titulo,String description,String nombreimagen,BigInteger tamano,String nombreusuario){
         EntityManager em = emf.createEntityManager();
         boolean Success = false;
         try {
             em.getTransaction().begin();
-            Usuarios User = em.find(Usuarios.class,idusuario);
+            Usuarios User = this.getUsuario(nombreusuario);
             Imagenes imagen  = new Imagenes(direccion,titulo,nombreimagen,tamano,new BigInteger("0"),User,description);
             em.persist(imagen);
             Success=true;

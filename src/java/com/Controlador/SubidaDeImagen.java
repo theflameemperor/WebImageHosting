@@ -8,6 +8,7 @@ package com.Controlador;
 
 import com.DatoSession.ErrorDePagina;
 import com.DatoSession.SessionUsuario;
+import com.Entidades.Imagenes;
 import com.Servicio.BaseDeDatos;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.math.BigInteger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -47,7 +49,10 @@ public class SubidaDeImagen extends HttpServlet {
         BaseDeDatos Data =  new BaseDeDatos();
         RequestDispatcher dispatcher = request.getRequestDispatcher("./errorPage.jsp");
         // Create path components to save the file
-        final String path = "/home/mrmomo/image hosting/";
+
+        final String pathReymond = "/home/mrmomo/image hosting";
+        final String pathEmnanuel = "";
+        final String path = pathReymond;
         final String nombreUsuario;
         final Part filePart = request.getPart("file");
         SessionUsuario session =  (SessionUsuario)request.getSession().getAttribute("usuario");
@@ -63,17 +68,13 @@ public class SubidaDeImagen extends HttpServlet {
         if (!SaveDir.exists()) {
             SaveDir.mkdir();
         }
-        if (idval == -1) {
-            request.setAttribute("error", new ErrorDePagina("error interno","id de imagen no se puede"+SaveDir.getAbsolutePath()+"/" +idval+getExtension(filePart.getSubmittedFileName())));
-            dispatcher.forward(request, response);
-        }
         OutputStream out = null;
         InputStream filecontent = null;
         final PrintWriter writer = response.getWriter();
-
         try {
-            out = new FileOutputStream(new File(SaveDir.getAbsolutePath()+"/" +idval+getExtension(filePart.getSubmittedFileName())));
-            writer.println("<p>1</p>");
+            String ruta = path+"/"+nombreUsuario+"/" +(idval++)+getExtension(filePart.getSubmittedFileName());
+            out = new FileOutputStream(new File(ruta));
+            writer.println("<p>"+filePart.getSubmittedFileName()+"</p>");
             filecontent = filePart.getInputStream();
 
             int read = 0;
@@ -82,11 +83,20 @@ public class SubidaDeImagen extends HttpServlet {
             while ((read = filecontent.read(bytes)) != -1) {
                 out.write(bytes, 0, read);
             }
+            String titulo = request.getParameter("titulo");
+            String description = request.getParameter("description");
+            String etiquetas = request.getParameter("etiqueta");
+            if (Data.InsertarImagen(ruta, titulo, description, filePart.getSubmittedFileName(), new BigInteger(String.valueOf(new File(ruta).length())),nombreUsuario)) {
+                 response.sendRedirect("index.jsp");
+            }
+            else{
+                writer.println("<br/> ERROR: " + filePart.getSubmittedFileName());
+            }
+
 
         }
-        catch (FileNotFoundException fne) {
-            writer.println("You either did not specify a file to upload or are  trying to upload a file to a protected or nonexisten location.");
-            writer.println("<br/> ERROR: " + fne.getMessage());
+        catch (Exception fne) {
+            writer.println("<br/> ERROR: " + filePart.getSubmittedFileName());
 
         }
         finally {
@@ -103,7 +113,7 @@ public class SubidaDeImagen extends HttpServlet {
         //response.sendRedirect("index.jsp");
     }
     protected String getExtension(String archivo){
-        return "*"+archivo.replaceAll(".*\\.","");
+        return "."+archivo.replaceAll(".*\\.","");
     };
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -46,17 +46,17 @@ public class NavBar_notlogged extends SimpleTagSupport {
 "					<form class=\"form\" id=\"formLogin\">\n" +
 "						<input name=\"username\" id=\"username\" type=\"text\" placeholder=\"Username\">\n" +
 "						<input name=\"password\" id=\"password\" type=\"password\" placeholder=\"Password\"><br>\n" +
-"						<button type=\"button\" id=\"btnLogin\" class=\"btn\">Login</button>\n" +
+"						<button type=\"submit\" id=\"btnLogin\" class=\"btn\">Login</button>\n" +
 "					</form>\n" +
 "				</div>\n" +
 "			</li>\n" +
 "			<li class=\"dropdown\" id=\"menuLogin\">\n" +
 "				<a class=\"dropdown-toggle\" href=\"#\" data-toggle=\"dropdown\" id=\"navLogin\">Registrarse</a>\n" +
 "				<div class=\"dropdown-menu\" style=\"padding:17px;\">\n" +
-"					<form class=\"form\" id=\"formLogin\">\n" +
+"					<form class=\"form\" id=\"formLogin\" >\n" +
 "						<input name=\"username\" id=\"username\" type=\"text\" placeholder=\"Username\">\n" +
 "						<input name=\"password\" id=\"password\" type=\"password\" placeholder=\"Password\"><br>\n" +
-"						<button type=\"button\" id=\"btnLogin\" class=\"btn\">Registrarse</button>\n" +
+"						<button  type=\"submit\" id=\"btnLogin\" class=\"btn\">Registrarse</button>\n" +
 "					</form>\n" +
 "				</div>\n" +
 "			</li>\n" +
@@ -73,29 +73,30 @@ public class NavBar_notlogged extends SimpleTagSupport {
 "        <h4 class=\"modal-title\">Modal Header</h4>\n" +
 "      </div>\n" +
 "      <div class=\"modal-body\">\n" +
-"        <form enctype=\"multipart/form-data\">\n" +
+"        <form enctype=\"multipart/form-data\" method=\"post\" action=\"SubidaDeImagen\">\n" +
 "            <div class=\"form-group\">\n" +
 "                <label for=\"Titulo\">Titulo</label>\n" +
-"                <input class=\"form-control\" type=\"text\" pattern=\".{1,50}\" required />\n" +
+"                <input name=\"titulo\" class=\"form-control\" type=\"text\" pattern=\".{1,50}\" required />\n" +
 "\n" +
 "            </div>\n" +
 "            <div class=\"form-group\">\n" +
 "                <label for=\"Descripcion\">Descripcion </label>\n" +
-"                <input class=\"form-control\" type=\"text\" pattern=\".{1,50}\" required />\n" +
+"                <input name=\"description\" class=\"form-control\" type=\"text\" pattern=\".{1,50}\" required />\n" +
 "            </div>\n" +
 "\n" +
 "            <div class=\"form-group\">\n" +
 "                <label for=\"Etiquetas\">Etiquetas </label>\n" +
-"                <input class=\"form-control\" type=\"text\" pattern=\".{1,50}\" placeholder=\"separado por;\" pattern=\".+;\" required />\n" +
+"                <input name=\"etiqueta\" class=\"form-control\" type=\"text\" pattern=\".{1,50}\" placeholder=\"separado por;\" pattern=\".+;\"/>\n" +
 "            </div>\n" +
 "\n" +
 "            <div class=\"form-group\">\n" +
-"                <input id=\"file-0b\" class=\"file\" type=\"file\" multiple data-preview-file-type=\"any\" data-upload-url=\"#\" data-preview-file-icon=\"\">\n" +
+"                <input id=\"file-0b\" class=\"file\" name=\"file\" type=\"file\" multiple data-preview-file-type=\"any\" data-upload-url=\"#\" data-preview-file-icon=\"\">\n" +
 "            </div>\n" +
+"            <button type=\"submit\" class=\"btn btn-primary active\">Submit</button>\n"+
 "        </form>"+
 "      </div>\n" +
 "      <div class=\"modal-footer\">\n" +
-"        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+"        <button  type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
 "      </div>\n" +
 "    </div>\n" +
 "  </div>\n" +
