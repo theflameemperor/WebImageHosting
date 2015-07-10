@@ -30,7 +30,6 @@ public class BaseDeDatos {
         try {
             em.getTransaction().begin();
             es = (Usuarios) em.createNamedQuery("Usuarios.findByNombreusuario").setParameter("nombreusuario",nombre).getSingleResult();
-            System.out.println("hello: "+es.getNombreusuario());
             em.getTransaction().commit();
         }
         catch (Exception e) {
@@ -56,6 +55,25 @@ public class BaseDeDatos {
             System.out.println("tipousuario:" + tUsuario.getTipo());
             Usuarios es = new Usuarios(nombre,contrasena,tUsuario);
             em.persist(es);
+            Success=true;
+            em.flush();
+            em.getTransaction().commit();
+        }
+        catch (Exception e) {
+            System.out.println("Mensaje de excepetion " + e);
+            em.getTransaction().rollback();
+        }
+        finally {
+            em.close();
+        }
+        return Success;
+    }
+    public boolean InsertarImagen(String direccion,String titulo,String description,String nombreimagen,long tamano,int idusuario){
+        EntityManager em = emf.createEntityManager();
+        boolean Success = false;
+        try {
+            em.getTransaction().begin();
+
             Success=true;
             em.flush();
             em.getTransaction().commit();

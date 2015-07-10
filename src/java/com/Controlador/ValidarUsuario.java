@@ -38,6 +38,7 @@ public class ValidarUsuario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         if (request.getSession().getAttribute("usuario") != null) {
             //send home
+            response.sendRedirect("index.jsp");
         }
         BaseDeDatos Data =  new BaseDeDatos();
         String nombre = request.getParameter("nombre");
@@ -53,6 +54,7 @@ public class ValidarUsuario extends HttpServlet {
         Usuarios tmp =  Data.getUsuario(nombre);
         if (tmp != null) {
             if (tmp.getNombreusuario().equals(nombre) && tmp.getContrasena().equals(contrasena)) {
+                //log in success
                 request.getSession().setAttribute("usuario",new SessionUsuario(nombre));
                 response.sendRedirect("index.jsp");
             }
