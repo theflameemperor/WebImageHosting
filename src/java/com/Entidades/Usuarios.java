@@ -62,11 +62,14 @@ public class Usuarios implements Serializable {
 
     public Usuarios() {
     }
-
     public Usuarios(Long idusuario) {
         this.idusuario = idusuario;
     }
-
+    public  Usuarios(String nombre,String contrasena,Tipousuarios tipousuario){
+        this.nombreusuario=nombre;
+        this.contrasena = contrasena;
+        this.tipousuario = tipousuario;
+    }
     public Long getIdusuario() {
         return idusuario;
     }
@@ -150,5 +153,5 @@ public class Usuarios implements Serializable {
     public String toString() {
         return "com.Entidades.Usuarios[ idusuario=" + idusuario + " ]";
     }
-    
+
 }

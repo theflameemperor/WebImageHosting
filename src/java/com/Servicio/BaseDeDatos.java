@@ -6,7 +6,6 @@
 
 package com.Servicio;
 
-import com.Entidades.Usuarios;
 import java.util.ArrayList;
 import java.util.Arrays;
 import static java.util.Collections.list;
@@ -16,6 +15,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+//Entidades de base de datos
+import com.Entidades.Usuarios;
+import com.Entidades.Tipousuarios;
 
 public class BaseDeDatos {
     //TODO
@@ -39,8 +41,28 @@ public class BaseDeDatos {
         }
         return es;
     }
-    public  BaseDeDatos(){}
     //Insersion de datos
+    public boolean RegistrarUsuario(String nombre,String contrasena){
+        EntityManager em = emf.createEntityManager();
+        boolean Success = false;
+        try {
+            em.getTransaction().begin();
+            Tipousuarios tUsuario = em.find(Tipousuarios.class,2);
+            System.out.println("tipousuario:" + tUsuario.getTipo());
+            Usuarios es = new Usuarios(nombre,contrasena,tUsuario);
+            em.persist(es);
+            Success=true;
+            em.flush();
+            em.getTransaction().commit();
+        }
+        catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        finally {
+            em.close();
+        }
+        return Success;
+    }
     //Eliminacion de datos
     //Modificacion de datos
 
