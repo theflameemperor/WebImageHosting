@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+  <tlib-version>1.0</tlib-version>
+  <short-name>vistadelapagina</short-name>
+  <uri>/WEB-INF/tlds/VistaDeLaPagina</uri>
+  <tag>
+    <name>IncludeBootstrap</name>
+    <tag-class>com.Tags.IncludeBootstrap</tag-class>
+    <body-content>scriptless</body-content>
+    <attribute>
+      <name>file</name>
+      <type>boolean</type>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+  <tag>
+    <name>NotLogged</name>
+    <tag-class>com.Tags.NavBar_notlogged</tag-class>
+    <body-content>scriptless</body-content>
+  </tag>
+  <tag>
+    <name>Logged</name>
+    <tag-class>com.Tags.NavBar_logged</tag-class>
+    <body-content>scriptless</body-content>
+  </tag>
+</taglib>
