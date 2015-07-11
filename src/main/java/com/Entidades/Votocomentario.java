@@ -36,10 +36,10 @@ public class Votocomentario implements Serializable {
     private Integer voto;
     @JoinColumn(name = "IDCOMENTARIO", referencedColumnName = "IDCOMENTARIO", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Comentario comentario;
+    private Comentarios comentarios;
     @JoinColumn(name = "IDUSUARIO", referencedColumnName = "IDUSUARIO", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Usuario usuario;
+    private Usuarios usuarios;
 
     public Votocomentario() {
     }
@@ -68,20 +68,20 @@ public class Votocomentario implements Serializable {
         this.voto = voto;
     }
 
-    public Comentario getComentario() {
-        return comentario;
+    public Comentarios getComentarios() {
+        return comentarios;
     }
 
-    public void setComentario(Comentario comentario) {
-        this.comentario = comentario;
+    public void setComentarios(Comentarios comentarios) {
+        this.comentarios = comentarios;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Usuarios getUsuarios() {
+        return usuarios;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuarios(Usuarios usuarios) {
+        this.usuarios = usuarios;
     }
 
     @Override
@@ -106,7 +106,7 @@ public class Votocomentario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.Entidades.Votocomentario[ votocomentarioPK=" + votocomentarioPK + " ]";
+        return "com.Controlador.Votocomentario[ votocomentarioPK=" + votocomentarioPK + " ]";
     }
     
 }

@@ -6,7 +6,7 @@
 
 package com.Controlador;
 
-import com.Entidades.Usuario;
+import com.Entidades.Usuarios;
 import com.Servicio.BaseDeDatos;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -48,7 +48,7 @@ public class RegistrarUsuario extends HttpServlet {
             System.out.println("faltan cosas");
             dispatcher.forward(request, response);
         }
-        Usuario tmp =  Data.getUsuario(nombre);
+        Usuarios tmp =  Data.getUsuario(nombre);
         if (tmp == null) {
             if (Data.RegistrarUsuario(nombre,contrasena)) {
                 request.getSession().setAttribute("usuario",new SesionUsuario(nombre));

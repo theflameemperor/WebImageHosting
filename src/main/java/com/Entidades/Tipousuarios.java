@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.Entidades;
 
 import java.io.Serializable;
@@ -24,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author mrmomo
+ * @author Enmanuel
  */
 @Entity
 @Table(name = "TIPOUSUARIOS")
@@ -40,7 +39,7 @@ public class Tipousuarios implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDTIPO")
     private Long idtipo;
-    @Size(max = 50)
+    @Size(max = 2147483647)
     @Column(name = "TIPO")
     private String tipo;
     @OneToMany(mappedBy = "tipousuario")
@@ -100,7 +99,7 @@ public class Tipousuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "com.Entidades.Tipousuarios[ idtipo=" + idtipo + " ]";
+        return "com.Controlador.Tipousuarios[ idtipo=" + idtipo + " ]";
     }
     
 }

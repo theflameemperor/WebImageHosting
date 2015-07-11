@@ -76,7 +76,7 @@ public class VotocomentarioPK implements Serializable {
 
     @Override
     public String toString() {
-        return "com.Entidades.VotocomentarioPK[ idcomentario=" + idcomentario + ", idusuario=" + idusuario + " ]";
+        return "com.Controlador.VotocomentarioPK[ idcomentario=" + idcomentario + ", idusuario=" + idusuario + " ]";
     }
     
 }

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.Entidades;
 
 import java.io.Serializable;
@@ -26,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author mrmomo
+ * @author Enmanuel
  */
 @Entity
 @Table(name = "ETIQUETAS")
@@ -42,7 +41,7 @@ public class Etiquetas implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDETIQUETA")
     private Long idetiqueta;
-    @Size(max = 30)
+    @Size(max = 2147483647)
     @Column(name = "ETIQUETA")
     private String etiqueta;
     @JoinTable(name = "ETIQUETAIMAGENES", joinColumns = {
@@ -105,7 +104,7 @@ public class Etiquetas implements Serializable {
 
     @Override
     public String toString() {
-        return "com.Entidades.Etiquetas[ idetiqueta=" + idetiqueta + " ]";
+        return "com.Controlador.Etiquetas[ idetiqueta=" + idetiqueta + " ]";
     }
     
 }

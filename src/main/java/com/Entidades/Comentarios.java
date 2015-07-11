@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.Entidades;
 
 import java.io.Serializable;
@@ -27,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author mrmomo
+ * @author Enmanuel
  */
 @Entity
 @Table(name = "COMENTARIOS")
@@ -43,7 +42,7 @@ public class Comentarios implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDCOMENTARIO")
     private Long idcomentario;
-    @Size(max = 1000)
+    @Size(max = 2147483647)
     @Column(name = "COMENTARIO")
     private String comentario;
     @JoinColumn(name = "IDIMAGEN", referencedColumnName = "IDIMAGEN")
@@ -125,7 +124,7 @@ public class Comentarios implements Serializable {
 
     @Override
     public String toString() {
-        return "com.Entidades.Comentarios[ idcomentario=" + idcomentario + " ]";
+        return "com.Controlador.Comentarios[ idcomentario=" + idcomentario + " ]";
     }
     
 }

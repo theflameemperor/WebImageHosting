@@ -6,14 +6,15 @@
 
 package com.Controlador;
 
-import com.cloudinary.*;
 import com.DatoSesion.SesionUsuario;
 import com.Servicio.BaseDeDatos;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -30,6 +31,7 @@ import javax.servlet.http.Part;
 @WebServlet(name = "SubidaDeImagen", urlPatterns = {"/SubidaDeImagen"})
 @MultipartConfig
 public class SubidaDeImagen extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,19 +42,7 @@ public class SubidaDeImagen extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-        Map<String, String> cloud = new HashMap<String, String>();
-        cloud.put("cloud_name", "pucmm");
-        cloud.put("api_key", "117891917699974");
-        cloud.put("api_secret", "8IzjNgmiGWu3LMbQL39h57gSqEc");
-        Cloudinary cloudinary = new Cloudinary(cloud);
-        File toUpload = new File("\"C:/Users/Enmanuel/Pictures/Screenshots/Screenshot (110).png\"");
-        Map uploadResult = cloudinary.uploader().upload(toUpload, cloud);
-        for (Object lol: uploadResult.keySet()) {
-            
-            System.out.println(lol);
-        }
-        
+        response.setContentType("text/html;charset=UTF-8");
         BaseDeDatos Data =  new BaseDeDatos();
         RequestDispatcher dispatcher = request.getRequestDispatcher("./errorPage.jsp");
         // Create path components to save the file
@@ -62,71 +52,61 @@ public class SubidaDeImagen extends HttpServlet {
         final String path = pathEmnanuel;
         final String nombreUsuario;
         final Part filePart = request.getPart("file");
-        String titulo = request.getParameter("titulo");
-        String description = request.getParameter("description");
-        String etiquetas = request.getParameter("etiqueta");
         SesionUsuario session =  (SesionUsuario)request.getSession().getAttribute("usuario");
         if (session == null) {
-           nombreUsuario = "anon";
+            nombreUsuario = "anon";
         }
         else{
             nombreUsuario = session.getNombre();
-       }
-        Data.InsertarImagen(String.valueOf(uploadResult.get("url")), titulo, description, filePart.getSubmittedFileName(), new BigInteger(String.valueOf(uploadResult.get("bytes"))),nombreUsuario);
-//        if (session == null) {
-//            nombreUsuario = "anon";
-//        }
-//        else{
-//            nombreUsuario = session.getNombre();
-//        }
-//        long idval = Data.getUltimaImagenDelUsuario(nombreUsuario);
-//
-//        File SaveDir = new File(path + "/"+nombreUsuario);
-//        if (!SaveDir.exists()) {
-//            SaveDir.mkdir();
-//        }
-//        OutputStream out = null;
-//        InputStream filecontent = null;
-//        final PrintWriter writer = response.getWriter();
-//        try {
-//            String ruta = path+"/"+nombreUsuario+"/" +(idval++)+getExtension(filePart.getSubmittedFileName());
-//            out = new FileOutputStream(new File(ruta));
-//            writer.println("<p>"+filePart.getSubmittedFileName()+"</p>");
-//            filecontent = filePart.getInputStream();
-//
-//            int read = 0;
-//            final byte[] bytes = new byte[1024];
-//
-//            while ((read = filecontent.read(bytes)) != -1) {
-//                out.write(bytes, 0, read);
-//            }
-//            String titulo = request.getParameter("titulo");
-//            String description = request.getParameter("description");
-//            String etiquetas = request.getParameter("etiqueta");
-//            if (Data.InsertarImagen(ruta, titulo, description, filePart.getSubmittedFileName(), new BigInteger(String.valueOf(new File(ruta).length())),nombreUsuario)) {
-//                 response.sendRedirect("index.jsp");
-//            }
-//            else{
-//                writer.println("<br/> ERROR: " + filePart.getSubmittedFileName());
-//            }
-//
-//
-//        }
-//        catch (Exception fne) {
-//            writer.println("<br/> ERROR: " + filePart.getSubmittedFileName());
-//
-//        }
-//        finally {
-//            if (out != null) {
-//                out.close();
-//            }
-//            if (filecontent != null) {
-//                filecontent.close();
-//            }
-//            if (writer != null) {
-//                writer.close();
-//            }
-//        }
+        }
+        long idval = Data.getUltimaImagenDelUsuario(nombreUsuario);
+
+        File SaveDir = new File(path + "/"+nombreUsuario);
+        if (!SaveDir.exists()) {
+            SaveDir.mkdir();
+        }
+        OutputStream out = null;
+        InputStream filecontent = null;
+        final PrintWriter writer = response.getWriter();
+        try {
+            String ruta = path+"/"+nombreUsuario+"/" +(idval++)+getExtension(filePart.getSubmittedFileName());
+            out = new FileOutputStream(new File(ruta));
+            writer.println("<p>"+filePart.getSubmittedFileName()+"</p>");
+            filecontent = filePart.getInputStream();
+
+            int read = 0;
+            final byte[] bytes = new byte[1024];
+
+            while ((read = filecontent.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
+            String titulo = request.getParameter("titulo");
+            String description = request.getParameter("description");
+            String etiquetas = request.getParameter("etiqueta");
+            if (Data.InsertarImagen(ruta, titulo, description, filePart.getSubmittedFileName(), new BigInteger(String.valueOf(new File(ruta).length())),nombreUsuario)) {
+                 response.sendRedirect("index.jsp");
+            }
+            else{
+                writer.println("<br/> ERROR: " + filePart.getSubmittedFileName());
+            }
+
+
+        }
+        catch (Exception fne) {
+            writer.println("<br/> ERROR: " + filePart.getSubmittedFileName());
+
+        }
+        finally {
+            if (out != null) {
+                out.close();
+            }
+            if (filecontent != null) {
+                filecontent.close();
+            }
+            if (writer != null) {
+                writer.close();
+            }
+        }
         //response.sendRedirect("index.jsp");
     }
     protected String getExtension(String archivo){

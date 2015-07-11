@@ -6,9 +6,9 @@
 
 package com.Servicio;
 
-import com.Entidades.Imagen;
-import com.Entidades.Tipousuario;
-import com.Entidades.Usuario;
+import com.Entidades.Imagenes;
+import com.Entidades.Tipousuarios;
+import com.Entidades.Usuarios;
 import java.math.BigInteger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,12 +20,12 @@ public class BaseDeDatos {
     //add name
     public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("HostingDeImagenesPU");
     //Busqueda de datos
-    public Usuario getUsuario(String nombre){
+    public Usuarios getUsuario(String nombre){
         EntityManager em = emf.createEntityManager();
-        Usuario es = null;
+        Usuarios es = null;
         try {
             em.getTransaction().begin();
-            es = (Usuario) em.createNamedQuery("Usuario.findByNombreusuario").setParameter("nombreusuario",nombre).getSingleResult();
+            es = (Usuarios) em.createNamedQuery("Usuarios.findByNombreusuario").setParameter("nombreusuario",nombre).getSingleResult();
             em.getTransaction().commit();
         }
         catch (Exception e) {
@@ -41,8 +41,8 @@ public class BaseDeDatos {
         long indice = 0;
         try {
             em.getTransaction().begin();
-            Usuario temp = (Usuario) em.createNamedQuery("Usuarios.findByNombreusuario").setParameter("nombreusuario",nombre).getSingleResult();
-            indice = temp.getImagenList().get(temp.getImagenList().size()-1).getIdimagen();
+            Usuarios temp = (Usuarios) em.createNamedQuery("Usuarios.findByNombreusuario").setParameter("nombreusuario",nombre).getSingleResult();
+            indice = temp.getImagenesList().get(temp.getImagenesList().size()-1).getIdimagen();
             em.getTransaction().commit();
         }
         catch (Exception e) {
@@ -64,9 +64,9 @@ public class BaseDeDatos {
             //Tipousuarios tUsuario = em.find(Tipousuarios.class,2);
             //correct
             //Tipousuarios tUsuario = em.find(Tipousuarios.class,(long)2);
-            Tipousuario tUsuario = em.find(Tipousuario.class,(long)2);
+            Tipousuarios tUsuario = em.find(Tipousuarios.class,(long)2);
             System.out.println("tipousuario:" + tUsuario.getTipo());
-            Usuario es = new Usuario(nombre,contrasena,tUsuario);
+            Usuarios es = new Usuarios(nombre,contrasena,tUsuario);
             em.persist(es);
             Success=true;
             em.flush();
@@ -86,8 +86,8 @@ public class BaseDeDatos {
         boolean Success = false;
         try {
             em.getTransaction().begin();
-            Usuario User = this.getUsuario(nombreusuario);
-            Imagen imagen  = new Imagen(direccion,titulo,nombreimagen,tamano,new BigInteger("0"),User,descripcion);
+            Usuarios User = this.getUsuario(nombreusuario);
+            Imagenes imagen  = new Imagenes(direccion,titulo,nombreimagen,tamano,new BigInteger("0"),User,descripcion);
             em.persist(imagen);
             Success=true;
             em.flush();

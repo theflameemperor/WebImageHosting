@@ -8,5 +8,5 @@
         <property name="URL" value="jdbc:h2:tcp://localhost/~/test1"/>
         <property name="driverClass" value="org.h2.Driver"/>
     </jdbc-connection-pool>
-    <jdbc-resource enabled="true" jndi-name="parcial2" object-type="user" pool-name="jdbc_h2_tcp_localhost_~_test1_saPool"/>
+    <jdbc-resource enabled="true" jndi-name="h2" object-type="user" pool-name="jdbc_h2_tcp_localhost_~_test1_saPool"/>
 </resources>
