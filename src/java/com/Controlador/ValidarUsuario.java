@@ -6,18 +6,17 @@
 
 package com.Controlador;
 
-import com.DatoSession.SessionUsuario;
+import com.DatoSesion.SesionUsuario;
 import com.Entidades.Usuarios;
 import com.Servicio.BaseDeDatos;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.DatoSession.ErrorDePagina;
+import com.DatoSesion.ErrorDePagina;
 /**
  *
  * @author mrmomo
@@ -55,7 +54,7 @@ public class ValidarUsuario extends HttpServlet {
         if (tmp != null) {
             if (tmp.getNombreusuario().equals(nombre) && tmp.getContrasena().equals(contrasena)) {
                 //log in success
-                request.getSession().setAttribute("usuario",new SessionUsuario(nombre));
+                request.getSession().setAttribute("usuario",new SesionUsuario(nombre));
                 response.sendRedirect("index.jsp");
             }
             else{

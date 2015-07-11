@@ -15,7 +15,12 @@
 </head>
 
 <body>
-    <tags:NotLogged/>
+    <c:if test="${usuario != null}">
+        <tags:Logged/>
+    </c:if>
+    <c:if test="${usuario == null}">
+        <tags:NotLogged/>
+    </c:if>
     <div class="cuerpo">
         <div class="container">
             <div class="row">

@@ -3,26 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.Controlador;
 
-import com.Entidades.Usuarios;
-import com.Servicio.BaseDeDatos;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.DatoSesion.ErrorDePagina;
-import com.DatoSesion.SesionUsuario;
+
 /**
  *
- * @author mrmomo
+ * @author Enmanuel
  */
-@WebServlet(name = "RegistrarUsuario", urlPatterns = {"/RegistrarUsuario"})
-public class RegistrarUsuario extends HttpServlet {
+@WebServlet(name = "CerrarSesionUsuario", urlPatterns = {"/CerrarSesionUsuario"})
+public class CerrarSesionUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,36 +28,10 @@ public class RegistrarUsuario extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("usuario") != null) {
-            //send home
-        }
-        BaseDeDatos Data =  new BaseDeDatos();
-        String nombre = request.getParameter("nombre");
-        String contrasena = request.getParameter("contrasena");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("./errorPage.jsp");
-        System.out.println("nombre: " +nombre+" contrasena:" +contrasena);
-        if (nombre==null || contrasena == null) {
-            //send error page [missing parameters]
-            request.setAttribute("error", new ErrorDePagina("Datos Incompletos","falto poner su nombre de usario o contrasena "));
-            System.out.println("faltan cosas");
-            dispatcher.forward(request, response);
-        }
-        Usuarios tmp =  Data.getUsuario(nombre);
-        if (tmp == null) {
-            if (Data.RegistrarUsuario(nombre,contrasena)) {
-                request.getSession().setAttribute("usuario",new SesionUsuario(nombre));
-                response.sendRedirect("index.jsp");
-            }
-            else{
-                request.setAttribute("error", new ErrorDePagina("Error Interno","Lab base de datos se nego a registrar el usuario"));
-                dispatcher.forward(request, response);
-            }
-        }
-        else{
-            request.setAttribute("error", new ErrorDePagina("Ya Existe","Este usuario ya exite no puede crearlo"));
-            dispatcher.forward(request, response);
-        }
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.getSession().invalidate();
+        response.sendRedirect("index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

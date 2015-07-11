@@ -6,12 +6,9 @@
 
 package com.Controlador;
 
-import com.DatoSession.ErrorDePagina;
-import com.DatoSession.SessionUsuario;
-import com.Entidades.Imagenes;
+import com.DatoSesion.SesionUsuario;
 import com.Servicio.BaseDeDatos;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,11 +48,11 @@ public class SubidaDeImagen extends HttpServlet {
         // Create path components to save the file
 
         final String pathReymond = "/home/mrmomo/image hosting";
-        final String pathEmnanuel = "";
-        final String path = pathReymond;
+        final String pathEmnanuel = "C:\\Users\\Enmanuel\\Documents\\ImagenesSubidas";
+        final String path = pathEmnanuel;
         final String nombreUsuario;
         final Part filePart = request.getPart("file");
-        SessionUsuario session =  (SessionUsuario)request.getSession().getAttribute("usuario");
+        SesionUsuario session =  (SesionUsuario)request.getSession().getAttribute("usuario");
         if (session == null) {
             nombreUsuario = "anon";
         }

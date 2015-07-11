@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 
-package com.DatoSession;
+package com.DatoSesion;
 
 /**
  *
  * @author mrmomo
  */
-public class SessionUsuario {
+public class SesionUsuario {
     protected String nombre;
-    public SessionUsuario(String nombre){
+    public SesionUsuario(String nombre){
         this.nombre = nombre;
     }
     public String getNombre(){

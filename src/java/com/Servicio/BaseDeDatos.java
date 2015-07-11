@@ -10,15 +10,9 @@ import com.Entidades.Imagenes;
 import com.Entidades.Tipousuarios;
 import com.Entidades.Usuarios;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
-import static java.util.Collections.list;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 //Entidades de base de datos
 
 public class BaseDeDatos {
@@ -87,13 +81,13 @@ public class BaseDeDatos {
         }
         return Success;
     }
-    public boolean InsertarImagen(String direccion,String titulo,String description,String nombreimagen,BigInteger tamano,String nombreusuario){
+    public boolean InsertarImagen(String direccion,String titulo,String descripcion,String nombreimagen,BigInteger tamano,String nombreusuario){
         EntityManager em = emf.createEntityManager();
         boolean Success = false;
         try {
             em.getTransaction().begin();
             Usuarios User = this.getUsuario(nombreusuario);
-            Imagenes imagen  = new Imagenes(direccion,titulo,nombreimagen,tamano,new BigInteger("0"),User,description);
+            Imagenes imagen  = new Imagenes(direccion,titulo,nombreimagen,tamano,new BigInteger("0"),User,descripcion);
             em.persist(imagen);
             Success=true;
             em.flush();

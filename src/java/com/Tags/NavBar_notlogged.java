@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package com.Vista;
+package com.Tags;
 
 import javax.servlet.jsp.JspContext;
 import javax.servlet.jsp.JspException;
@@ -38,32 +32,32 @@ public class NavBar_notlogged extends SimpleTagSupport {
 "		<div class=\"collapse navbar-collapse\">\n" +
 "		<ul class=\"nav navbar-nav navbar-right\">\n" +
 "			<li>\n" +
-"				<a href=\"#portfolio\">Inicio</a>\n" +
+"				<a href=\"index.jsp\">Inicio</a>\n" +
 "			</li>\n" +
 "			<li class=\"dropdown\" id=\"menuLogin\">\n" +
-"				<a class=\"dropdown-toggle\" href=\"#\" data-toggle=\"dropdown\" id=\"navLogin\">Iniciar sesión</a>\n" +
+"				<a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Iniciar sesión</a>\n" +
 "				<div class=\"dropdown-menu\" style=\"padding:17px;\">\n" +
-"					<form class=\"form\" id=\"formLogin\">\n" +
-"						<input name=\"username\" id=\"username\" type=\"text\" placeholder=\"Username\">\n" +
-"						<input name=\"password\" id=\"password\" type=\"password\" placeholder=\"Password\"><br>\n" +
-"						<button type=\"submit\" id=\"btnLogin\" class=\"btn\">Login</button>\n" +
+"					<form class=\"form\" action=\"ValidarUsuario\" method=\"POST\">\n" +
+"						<input name=\"nombre\" type=\"text\" placeholder=\"Usuario\">\n" +
+"						<input name=\"contrasena\" type=\"password\" placeholder=\"Contraseña\"><br>\n" +
+"						<button type=\"submit\" class=\"btn\">Iniciar sesión</button>\n" +
 "					</form>\n" +
 "				</div>\n" +
 "			</li>\n" +
 "			<li class=\"dropdown\" id=\"menuLogin\">\n" +
-"				<a class=\"dropdown-toggle\" href=\"#\" data-toggle=\"dropdown\" id=\"navLogin\">Registrarse</a>\n" +
+"				<a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Registrarse</a>\n" +
 "				<div class=\"dropdown-menu\" style=\"padding:17px;\">\n" +
-"					<form class=\"form\" id=\"formLogin\" >\n" +
-"						<input name=\"username\" id=\"username\" type=\"text\" placeholder=\"Username\">\n" +
-"						<input name=\"password\" id=\"password\" type=\"password\" placeholder=\"Password\"><br>\n" +
-"						<button  type=\"submit\" id=\"btnLogin\" class=\"btn\">Registrarse</button>\n" +
+"					<form class=\"form\" action=\"RegistrarUsuario\" method=\"POST\">\n" +
+"						<input name=\"nombre\" type=\"text\" placeholder=\"Usuario\">\n" +
+"						<input name=\"contrasena\" type=\"password\" placeholder=\"Contraseña\"><br>\n" +
+"						<button type=\"submit\" class=\"btn\">Registrarse</button>\n" +
 "					</form>\n" +
 "				</div>\n" +
 "			</li>\n" +
 "		</ul>\n" +
 "	</div>\n" +
 "	</div>\n" +
-"</nav>\n" +
+"</nav>\n"  +
 "<div id=\"myModal\" class=\"modal fade\" role=\"dialog\">\n" +
 "  <div class=\"modal-dialog\">\n" +
 "    <!-- Modal content-->\n" +

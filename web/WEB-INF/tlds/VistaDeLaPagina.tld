@@ -5,7 +5,7 @@
   <uri>/WEB-INF/tlds/VistaDeLaPagina</uri>
   <tag>
     <name>IncludeBootstrap</name>
-    <tag-class>com.Vista.IncludeBootstrap</tag-class>
+    <tag-class>com.Tags.IncludeBootstrap</tag-class>
     <body-content>scriptless</body-content>
     <attribute>
       <name>file</name>
@@ -15,12 +15,12 @@
   </tag>
   <tag>
     <name>NotLogged</name>
-    <tag-class>com.Vista.NavBar_notlogged</tag-class>
+    <tag-class>com.Tags.NavBar_notlogged</tag-class>
     <body-content>scriptless</body-content>
   </tag>
   <tag>
     <name>Logged</name>
-    <tag-class>com.Vista.NavBar_logged</tag-class>
+    <tag-class>com.Tags.NavBar_logged</tag-class>
     <body-content>scriptless</body-content>
   </tag>
 </taglib>
