@@ -12,10 +12,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ERROR</title>
-        <Vista:IncludeBoostrap/>
+        <Vista:IncludeBootstrap/>
     </head>
     <body class="alter alert-danger">
-        <h1>${requestScope['error'].error}</h1
-        </h2>${requestScope['error'].reason}</h2>
+        <h1>${requestScope['error'].error}</h1>
+        <h2>${requestScope['error'].reason}</h2>
     </body>
 </html>
